@@ -44,13 +44,19 @@ Le projet utilise maintenant **vue-router** pour naviguer entre plusieurs pages�
 - `CV` (aperçu/téléchargement du CV)
 - `Contact` (formulaire qui ouvre un `mailto:` vers *matthieu1.pinceel@gmail.com*)
 
+La page a été stylisée pour donner une apparence plus professionnelle :
+
+- un en‑tête sombre avec le titre et le menu
+- mise en page responsive des sections
+- cartes pour les projets, formulaire amélioré, etc.
+
 Installez la dépendance avec :
 
 ```sh
 npm install vue-router@4
 ```
 
-Créez un fichier `public/cv.pdf` pour que la page CV puisse l'afficher.
+Déposez votre CV (`CV_2026-03-03_Matthieu_Pinceel.pdf` ou autre) dans `public/`.
 
 La navigation se trouve dans `src/App.vue` et la configuration du routeur dans `src/router/index.ts`.
 

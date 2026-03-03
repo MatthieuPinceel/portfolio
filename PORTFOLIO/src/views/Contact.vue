@@ -1,21 +1,22 @@
 <template>
   <section class="contact">
-    <h1>Contact</h1>
-    <form @submit.prevent="sendEmail">
-      <div>
-        <label for="lastName">Nom:</label>
+    <h1>Contactez-moi</h1>
+    <p>Vous avez un projet ou une question ? Utilisez le formulaire ci-dessous, je vous répondrai rapidement.</p>
+    <form @submit.prevent="sendEmail" class="contact-form">
+      <div class="field">
+        <label for="lastName">Nom</label>
         <input id="lastName" v-model="form.lastName" required />
       </div>
-      <div>
-        <label for="firstName">Prénom:</label>
+      <div class="field">
+        <label for="firstName">Prénom</label>
         <input id="firstName" v-model="form.firstName" required />
       </div>
-      <div>
-        <label for="email">Email:</label>
+      <div class="field">
+        <label for="email">Email</label>
         <input id="email" type="email" v-model="form.email" required />
       </div>
-      <div>
-        <label for="message">Message:</label>
+      <div class="field">
+        <label for="message">Message</label>
         <textarea id="message" v-model="form.message" required></textarea>
       </div>
       <button type="submit">Envoyer</button>
@@ -45,19 +46,42 @@ function sendEmail() {
 
 <style scoped>
 .contact {
-  padding: 2rem;
+  /* global section padding applies */
+  max-width: 600px;
+  margin: 0 auto;
 }
-.contact form > div {
-  margin-bottom: 1rem;
+.contact h1 {
+  margin-bottom: 0.5rem;
+}
+.contact p {
+  margin-bottom: 1.5rem;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact-form .field {
+  display: flex;
+  flex-direction: column;
+}
+.contact-form .field:nth-child(3),
+.contact-form .field:nth-child(4) {
+  grid-column: span 2;
 }
 .contact label {
-  display: block;
   font-weight: bold;
+  margin-bottom: 0.25rem;
 }
 .contact input,
 .contact textarea {
-  width: 100%;
   padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   box-sizing: border-box;
+}
+.contact button {
+  grid-column: span 2;
+  justify-self: start;
 }
 </style>

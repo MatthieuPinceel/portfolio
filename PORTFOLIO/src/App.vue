@@ -1,32 +1,57 @@
 <script setup lang="ts">
+import Footer from './components/Footer.vue'
 // la navigation est gérée par vue-router
 </script>
 
 <template>
-  <nav>
-    <router-link to="/">À propos</router-link> |
-    <router-link to="/projects">Projets</router-link> |
-    <router-link to="/cv">CV</router-link> |
-    <router-link to="/contact">Contact</router-link>
-  </nav>
-  <router-view />
+  <header class="site-header">
+    <h1 class="site-title">Portfolio Matthieu Pinceel</h1>
+    <nav class="site-nav">
+      <router-link to="/">À propos</router-link>
+      <router-link to="/professionel">Mon parcours</router-link>
+      <router-link to="/video">Mon BUT en 180s</router-link>
+      <router-link to="/cv">CV</router-link>
+      <router-link to="/contact">Contactez-moi</router-link>
+    </nav>
+  </header>
+
+  <main class="site-content">
+    <router-view />
+  </main>
+
+  <Footer />
 </template>
 
-<style>
-/* simple navigation */
-nav {
+<style scoped>
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #282c34;
+  color: white;
   padding: 1rem;
-  background: #f9f9f9;
 }
 
-nav a {
-  margin: 0 0.5rem;
+.site-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.site-nav {
+  margin-top: 0.5rem;
+}
+.site-nav a {
+  margin: 0 0.75rem;
+  color: #61dafb;
   text-decoration: none;
-  color: #42b983;
+}
+.site-nav a.router-link-active {
+  font-weight: bold;
+  border-bottom: 2px solid #61dafb;
 }
 
-nav a.router-link-active {
-  font-weight: bold;
+.site-content {
+  padding: 2rem 1rem;
 }
 </style>
 <style scoped>

@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import About from '../views/About.vue'
-import Projects from '../views/Projects.vue'
+import professionel from '../views/Professionnel.vue'
+import Video from '../views/Video.vue'
 import Cv from '../views/Cv.vue'
 import Contact from '../views/Contact.vue'
 
 const routes = [
   { path: '/', name: 'About', component: About },
-  { path: '/projects', name: 'Projects', component: Projects },
+  { path: '/professionel', name: 'professionel', component: professionel },
+  { path: '/video', name: 'Video', component: Video },
   { path: '/cv', name: 'Cv', component: Cv },
   { path: '/contact', name: 'Contact', component: Contact },
   // fallback
