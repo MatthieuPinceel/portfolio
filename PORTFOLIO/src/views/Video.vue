@@ -1,5 +1,10 @@
+<script setup lang="ts">
+import BackButton from '@/components/BackButton.vue'
+</script>
+
 <template>
   <section class="video">
+    <BackButton />
     <h1>Mon BUT en 180 secondes</h1>
     <p>Une présentation de mon BUT en moins de 3 minutes.</p>
     <div class="video-container">

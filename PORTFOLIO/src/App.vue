@@ -5,14 +5,17 @@ import Footer from './components/Footer.vue'
 
 <template>
   <header class="site-header">
-    <h1 class="site-title">Portfolio Matthieu Pinceel</h1>
-    <nav class="site-nav">
-      <router-link to="/">À propos</router-link>
-      <router-link to="/professionel">Mon parcours</router-link>
-      <router-link to="/video">Mon BUT en 180s</router-link>
-      <router-link to="/cv">CV</router-link>
-      <router-link to="/contact">Contactez-moi</router-link>
-    </nav>
+    <div class="header-content">
+      <img src="/IMG_MAHIEU.png" alt="Matthieu Pinceel" class="header-image">
+      <h1 class="site-title">Portfolio Matthieu Pinceel</h1>
+      <nav class="site-nav">
+        <router-link to="/">À propos</router-link>
+        <router-link to="/professionel">Mon parcours</router-link>
+        <router-link to="/video">Mon BUT en 180s</router-link>
+        <router-link to="/cv">CV</router-link>
+        <router-link to="/contact">Contactez-moi</router-link>
+      </nav>
+    </div>
   </header>
 
   <main class="site-content">
@@ -24,27 +27,49 @@ import Footer from './components/Footer.vue'
 
 <style scoped>
 .site-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #282c34;
   color: white;
   padding: 1rem;
 }
 
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.header-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #61dafb;
+  flex-shrink: 0;
+}
+
 .site-title {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  flex-shrink: 0;
 }
 
 .site-nav {
-  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  margin-left: auto;
 }
+
 .site-nav a {
-  margin: 0 0.75rem;
   color: #61dafb;
   text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
+
 .site-nav a.router-link-active {
   font-weight: bold;
   border-bottom: 2px solid #61dafb;
@@ -53,32 +78,25 @@ import Footer from './components/Footer.vue'
 .site-content {
   padding: 2rem 1rem;
 }
-</style>
-<style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .header-image {
+    width: 45px;
+    height: 45px;
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .site-title {
+    font-size: 1.1rem;
+  }
+
+  .site-nav a {
+    font-size: 0.8rem;
   }
 }
 </style>

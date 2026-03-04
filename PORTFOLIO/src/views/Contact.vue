@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import BackButton from '@/components/BackButton.vue'
 import { ref } from 'vue'
 
 const form = ref({

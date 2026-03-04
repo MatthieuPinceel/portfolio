@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <footer class="site-footer">
     <div class="footer-content">
-      <h3>Me retrouver</h3>
+      <h3>Me contacter</h3>
       <div class="social-links">
         <router-link to="/contact" class="social-link contact">
           Contactez-moi

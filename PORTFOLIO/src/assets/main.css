@@ -3,13 +3,15 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+  color: #e0e0e0;
 }
 
 a,
@@ -28,7 +30,6 @@ a,
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
     place-items: center;
   }
 
@@ -59,12 +60,30 @@ section h1 {
   font-size: 2rem;
   margin: 0 0 1rem;
   text-align: center;
-  color: #333;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 section h2 {
-  color: #42b983;
+  color: #61dafb;
   margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+section h3 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+section h4 {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+section h5,
+section h6 {
+  color: #d0d0d0;
 }
 
 .card-list {

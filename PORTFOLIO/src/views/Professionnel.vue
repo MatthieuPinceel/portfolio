@@ -1,5 +1,6 @@
 <template>
   <section class="professionel">
+    <BackButton />
     <h1>Mon parcours</h1>
 
     <!-- Accordion 1: Formation et Expérience -->
@@ -49,11 +50,15 @@
       <div v-show="showProjects" class="accordion-content">
         <div class="card-list">
           <div class="card" v-for="project in projects" :key="project.name">
+            <div class="card-image">
+              <img :src="project.image" :alt="project.name" class="project-image">
+            </div>
             <h3>{{ project.name }}</h3>
-            <p><strong>Période :</strong> {{ project.date }}</p>
-            <p><strong>Durée :</strong> {{ project.duration }}</p>
+            <p class="description">{{ project.description }}</p>
             <p><strong>Équipe :</strong> {{ project.teamSize }} personne(s)</p>
-            <p class="description"><strong>Description :</strong> {{ project.description }}</p>
+            <div class="technologies">
+              <span v-for="tech in project.technologies" :key="tech" class="tech-badge">{{ tech }}</span>
+            </div>
             <a :href="project.github" target="_blank" rel="noopener" class="github-link">Voir sur GitHub →</a>
           </div>
         </div>
@@ -63,6 +68,7 @@
 </template>
 
 <script setup lang="ts">
+import BackButton from '@/components/BackButton.vue'
 import { ref } from 'vue'
 
 interface Education {
@@ -80,11 +86,11 @@ interface Experience {
 
 interface Project {
   name: string
-  date: string
-  duration: string
-  teamSize: number
   description: string
+  image: string
+  teamSize: number
   github: string
+  technologies: string[]
 }
 
 const showFormation = ref(true)
@@ -128,20 +134,52 @@ const experiences = ref<Experience[]>([
 
 const projects = ref<Project[]>([
   {
-    name: 'Application de gestion de tâches',
-    date: '2024-11 à 2025-02',
-    duration: '4 mois',
-    teamSize: 4,
-    description: 'Application web permettant de créer, organiser et suivre des tâches en équipe avec système de notifications.',
-    github: 'https://github.com/matthieu/tasks-app'
+    name: 'Portfolio',
+    description: 'Mon portfolio personnel - site vitrine présentant mes projets, formations et expériences professionnelles.',
+    image: '/projects/portfolio.png',
+    teamSize: 1,
+    github: 'https://github.com/MatthieuPinceel/portfolio',
+    technologies: ['Vue.js', 'TypeScript', 'Vite']
   },
   {
-    name: 'Site vitrine pour un photographe',
-    date: '2025-05',
-    duration: '1 mois',
+    name: 'Clash of Piglin',
+    description: 'Jeu vidéo basé sur Minecraft. Jeu en temps réel où vous incarnez un clan piglin pour détruire la base piglin ennemie avec stratégie et combat.',
+    image: '/projects/clash-of-piglin.png',
+    teamSize: 2,
+    github: 'https://github.com/Zwartkat/Clash-of-piglin',
+    technologies: ['Python']
+  },
+  {
+    name: 'Daltons',
+    description: 'Projet développé en Dart explorant les capacités du langage pour créer des applications robustes.',
+    image: '/projects/daltons.png',
     teamSize: 1,
-    description: 'Portfolio en ligne mettant en valeur les travaux photographiques avec galerie responsive et formulaire de contact.',
-    github: 'https://github.com/matthieu/photographer-portfolio'
+    github: 'https://github.com/MatthieuPinceel/daltons',
+    technologies: ['Dart']
+  },
+  {
+    name: 'Kolonel Krazies',
+    description: 'Projet web interactif développé en HTML avec une interface utilisateur dynamique.',
+    image: '/projects/kolonel-krazies.png',
+    teamSize: 1,
+    github: 'https://github.com/MatthieuPinceel/Kolonel-Krazies',
+    technologies: ['HTML', 'CSS', 'JavaScript']
+  },
+  {
+    name: 'SAE Maintenance',
+    description: 'Projjet d\'Application Encadré (SAE) en cours de développement portant sur la maintenance et la gestion de systèmes.',
+    image: '/projects/sae-maintenance.png',
+    teamSize: 3,
+    github: 'https://github.com/MatthieuPinceel/SAE_Maintenance',
+    technologies: ['JavaScript', 'Database']
+  },
+  {
+    name: 'Balatro',
+    description: 'Projet explorant les mécaniques de jeu et les stratégies de gameplay.',
+    image: '/projects/balatro.png',
+    teamSize: 1,
+    github: 'https://github.com/MatthieuPinceel/Balatro',
+    technologies: ['DiverS']
   }
 ])
 </script>
@@ -288,6 +326,20 @@ const projects = ref<Project[]>([
   font-size: 1.1rem;
 }
 
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background-color: #f0f0f0;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card p {
   margin: 0.5rem 0;
   color: #666;
@@ -296,9 +348,25 @@ const projects = ref<Project[]>([
 
 .card .description {
   margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
   color: #555;
+  line-height: 1.5;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tech-badge {
+  display: inline-block;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .github-link {
