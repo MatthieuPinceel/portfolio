@@ -3,7 +3,7 @@
     <BackButton />
     <h1>Cartes à Collectionner</h1>
     <article class="intro">
-      <p>Un hobby nostalgique : collectionner, échanger et valoriser des cartes rares de différents univers. Découvrez ma passion pour les collectibles.</p>
+      <p>Un hobby : collectionner, échanger et tenter de compléter ma collection.</p>
     </article>
 
     <article class="gallery-section">
@@ -14,7 +14,9 @@
           <p>Image {{ index + 1 }}</p>
         </div>
       </div>
-      <p v-if="images.length === 0" class="no-images">Aucune image trouvée. Ajoutez des images au dossier <code>src/assets/gallery/Cards/</code></p>
+      <p v-if="images.length === 0" class="no-images">
+        Aucune image trouvée. Ajoutez des images au dossier <code>src/assets/gallery/Cards/</code>
+      </p>
     </article>
   </section>
 </template>
@@ -85,18 +87,6 @@ const images = computed(() => getGalleryImages('Cards'))
 }
 </style>
 
-
-.no-images {
-  text-align: center;
-  color: #999;
-  padding: 2rem;
-  font-style: italic;
-}
-
-.no-images code {
-  background-color: #f0f0f0;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: monospace;
-  color: #333;
-}
+.no-images { text-align: center; color: #999; padding: 2rem; font-style: italic; } .no-images code {
+background-color: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace;
+color: #333; }

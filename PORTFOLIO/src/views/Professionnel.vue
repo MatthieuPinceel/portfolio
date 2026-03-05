@@ -1,47 +1,9 @@
 <template>
   <section class="professionel">
     <BackButton />
-    <h1>Mon parcours</h1>
+    <h1>Mon parcours et mes projets</h1>
 
-    <!-- Accordion 1: Formation et Expérience -->
-    <div class="accordion">
-      <button class="accordion-btn" @click="toggleFormation">
-        <span class="accordion-title">Mes Formations & Expériences</span>
-        <span class="accordion-icon">{{ showFormation ? '▼' : '▶' }}</span>
-      </button>
-      <div v-show="showFormation" class="accordion-content">
-        <article class="section-part">
-          <h3>Parcours scolaire</h3>
-          <div class="timeline">
-            <div class="timeline-item" v-for="education in educations" :key="education.school">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>{{ education.diploma }}</h4>
-                <p><strong>{{ education.school }}</strong></p>
-                <p class="year">{{ education.year }}</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="section-part">
-          <h3>Expériences professionnelles</h3>
-          <div class="timeline">
-            <div class="timeline-item" v-for="experience in experiences" :key="experience.company">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h4>{{ experience.position }}</h4>
-                <p><strong>{{ experience.company }}</strong></p>
-                <p class="year">{{ experience.period }}</p>
-                <p>{{ experience.description }}</p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- Accordion 2: Projets -->
+    <!-- Accordion 1: Projets -->
     <div class="accordion">
       <button class="accordion-btn" @click="toggleProjects">
         <span class="accordion-title">Mes Projets</span>
@@ -51,17 +13,69 @@
         <div class="card-list">
           <div class="card" v-for="project in projects" :key="project.name">
             <div class="card-image">
-              <img :src="project.image" :alt="project.name" class="project-image">
+              <img :src="project.image" :alt="project.name" class="project-image" />
             </div>
             <h3>{{ project.name }}</h3>
             <p class="description">{{ project.description }}</p>
             <p><strong>Équipe :</strong> {{ project.teamSize }} personne(s)</p>
             <div class="technologies">
-              <span v-for="tech in project.technologies" :key="tech" class="tech-badge">{{ tech }}</span>
+              <span v-for="tech in project.technologies" :key="tech" class="tech-badge">{{
+                tech
+              }}</span>
             </div>
-            <a :href="project.github" target="_blank" rel="noopener" class="github-link">Voir sur GitHub →</a>
+            <a
+              v-if="project.github"
+              :href="project.github"
+              target="_blank"
+              rel="noopener"
+              class="github-link"
+              >Voir sur GitHub →</a
+            >
+            <div v-if="project.durée" class="duration">
+              <strong>Durée :</strong> {{ project.durée }}
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Accordion 2: Formation et Expérience -->
+    <div class="accordion">
+      <button class="accordion-btn" @click="toggleFormation">
+        <span class="accordion-title">Mes Formations & Expériences</span>
+        <span class="accordion-icon">{{ showFormation ? '▼' : '▶' }}</span>
+      </button>
+      <div v-show="showFormation" class="accordion-content">
+        <article class="section-part">
+          <h3>Expériences professionnelles</h3>
+          <div class="timeline">
+            <div class="timeline-item" v-for="experience in experiences" :key="experience.company">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>{{ experience.position }}</h4>
+                <p>
+                  <strong>{{ experience.company }}</strong>
+                </p>
+                <p class="year">{{ experience.period }}</p>
+                <p>{{ experience.description }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="section-part">
+          <h3>Parcours scolaire</h3>
+          <div class="timeline">
+            <div class="timeline-item" v-for="education in educations" :key="education.school">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>{{ education.diploma }}</h4>
+                <p>
+                  <strong>{{ education.school }}</strong>
+                </p>
+                <p class="year">{{ education.year }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -89,8 +103,9 @@ interface Project {
   description: string
   image: string
   teamSize: number
-  github: string
+  github: string | null
   technologies: string[]
+  durée: string | null
 }
 
 const showFormation = ref(true)
@@ -106,81 +121,100 @@ const toggleProjects = () => {
 
 const educations = ref<Education[]>([
   {
-    diploma: 'Bachelor/Licence – Informatique',
-    school: 'Université de …',
-    year: '2020 – 2023'
+    diploma: 'BUT – Informatique',
+    school: 'ULCO, Calais',
+    year: '2023 – 2026',
   },
   {
-    diploma: 'BTS Services Informatiques aux Organisations',
-    school: 'Lycée de …',
-    year: '2018 – 2020'
-  }
+    diploma: 'BAC - Général options NSI et mathématiques',
+    school: 'Lycée Alexandre Ribot, Saint-Omer',
+    year: '2020 – 2023',
+  },
 ])
 
 const experiences = ref<Experience[]>([
   {
-    position: 'Développeur Full-Stack',
-    company: 'Entreprise X',
-    period: '2023 – Présent',
-    description: 'Réalisation d\'applications web modernes, gestion de projets et refonte d\'anciens systèmes.'
+    position: 'STAGE - Développeur Web',
+    company: 'Département du Nord',
+    period: '2025',
+    description: "Réalisation d'un wordpress spécialisé pour le service communication.",
   },
   {
-    position: 'Développeur Frontend (Stage)',
-    company: 'Entreprise Y',
-    period: '2022 – 2023',
-    description: 'Contribution sur des interfaces React, amélioration de l\'UX/UI et collaboration avec l\'équipe design.'
-  }
+    position: 'Hôte de caisse',
+    company: 'Carrefour',
+    period: '2025 - Present',
+    description:
+      "Accueil des clients, gestion des transactions et maintien d'un environnement de travail propre et organisé.",
+  },
+  {
+    position: 'Interimaire - Traveaux publics',
+    company: 'Ramery',
+    period: '2023 - 2024',
+    description: 'Construction de chaussées et de trottoirs.',
+  },
 ])
 
 const projects = ref<Project[]>([
   {
+    name: 'Réalité virtuelle',
+    description:
+      "Jeu VR sur Unreal Engine - thème nettoyage d'un bunker. Implémentation complète d'un environnement VR immersif avec mécaniques de jeu. Optimisation des performances graphiques et de l'expérience utilisateur pour VR. Travail en équipe de 5 personnes : coordination des tâches, programmation et intégration.",
+    image: 'src/assets/professionnel/rv.png',
+    teamSize: 5,
+    github: null,
+    technologies: ['Unreal Engine', 'Blueprints'],
+    durée: '1 semaine',
+  },
+  {
     name: 'Portfolio',
-    description: 'Mon portfolio personnel - site vitrine présentant mes projets, formations et expériences professionnelles.',
-    image: '/projects/portfolio.png',
+    description:
+      "Portfolio personnel. Développement d'une application web complète avec Vue.js et TypeScript, intégration multimédia (galeries, vidéos).",
+    image: 'src/assets/professionnel/portfolio.png',
     teamSize: 1,
     github: 'https://github.com/MatthieuPinceel/portfolio',
-    technologies: ['Vue.js', 'TypeScript', 'Vite']
+    technologies: ['Vue.js', 'TypeScript', 'Vite'],
+    durée: null,
   },
   {
     name: 'Clash of Piglin',
-    description: 'Jeu vidéo basé sur Minecraft. Jeu en temps réel où vous incarnez un clan piglin pour détruire la base piglin ennemie avec stratégie et combat.',
-    image: '/projects/clash-of-piglin.png',
-    teamSize: 2,
+    description:
+      "Jeu stratégique en temps réel inspiré de Minecraft. Implémentation du moteur de jeu, système de combat, IA ennemie et mécaniques de base piglin. Équilibrage du gameplay, optimisation de l'IA pour fluidité du jeu. Équipe de 5 : répartition design/gameplay.",
+    image: 'src/assets/professionnel/clash.png',
+    teamSize: 5,
     github: 'https://github.com/Zwartkat/Clash-of-piglin',
-    technologies: ['Python']
+    technologies: ['Python'],
+    durée: '3 mois',
   },
   {
-    name: 'Daltons',
-    description: 'Projet développé en Dart explorant les capacités du langage pour créer des applications robustes.',
-    image: '/projects/daltons.png',
-    teamSize: 1,
+    name: 'Jeu basé sur les drapeaux du monde | flagle',
+    description:
+      'Jeu de reconnaissance des drapeaux mondiaux en Dart. Développement complet en Dart : interface utilisateur, système de quizz, gestion des données. Code léger et performant, optimisation UX pour mobile. Collaboration en équipe de 5 sur un langage moins connu, partage de connaissance.',
+    image: 'src/assets/professionnel/flagle.png',
+    teamSize: 5,
     github: 'https://github.com/MatthieuPinceel/daltons',
-    technologies: ['Dart']
+    technologies: ['Dart'],
+    durée: '1 mois',
   },
   {
     name: 'Kolonel Krazies',
-    description: 'Projet web interactif développé en HTML avec une interface utilisateur dynamique.',
-    image: '/projects/kolonel-krazies.png',
-    teamSize: 1,
+    description:
+      "Projet web interactif Nuit de l'Info 2025 - défi 24h. Conception et développement Web complet en 1 nuit (HTML/CSS/JavaScript). Temps de réalisation faible.",
+    image: 'src/assets/professionnel/kolonel-krazies.png',
+    teamSize: 5,
     github: 'https://github.com/MatthieuPinceel/Kolonel-Krazies',
-    technologies: ['HTML', 'CSS', 'JavaScript']
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    durée: '24h',
   },
   {
     name: 'SAE Maintenance',
-    description: 'Projjet d\'Application Encadré (SAE) en cours de développement portant sur la maintenance et la gestion de systèmes.',
-    image: '/projects/sae-maintenance.png',
-    teamSize: 3,
-    github: 'https://github.com/MatthieuPinceel/SAE_Maintenance',
-    technologies: ['JavaScript', 'Database']
-  },
-  {
-    name: 'Balatro',
-    description: 'Projet explorant les mécaniques de jeu et les stratégies de gameplay.',
-    image: '/projects/balatro.png',
+    description:
+      "Maintenance et mise à niveau technique d'une borne d'arcade. Implémentation de documentation, intégration système. Amélioration des performances, maintenabilité du code. Gestion seul du projet.",
+    image: 'src/assets/professionnel/Sae-maintenance.png',
     teamSize: 1,
-    github: 'https://github.com/MatthieuPinceel/Balatro',
-    technologies: ['DiverS']
-  }
+    github: 'https://github.com/MatthieuPinceel/SAE_Maintenance',
+    technologies: ['Python', 'Raspberry Pi', 'shell', 'Java'],
+    durée: '2 semaines',
+  },
 ])
 </script>
 
@@ -316,7 +350,7 @@ const projects = ref<Project[]>([
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
@@ -381,5 +415,10 @@ const projects = ref<Project[]>([
 .github-link:hover {
   color: #369a6c;
 }
-</style>
 
+.duration {
+  margin-top: 0.5rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+</style>

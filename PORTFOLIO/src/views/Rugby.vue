@@ -3,7 +3,10 @@
     <BackButton />
     <h1>Rugby</h1>
     <article class="intro">
-      <p>Un sport collectif passionnant qui m'a appris la ténacité, le travail d'équipe et le dépassement de soi. Voici mon parcours et mes souvenirs du rugby.</p>
+      <p>
+        Un sport collectif passionnant qui m'a appris la ténacité, le travail d'équipe et le
+        dépassement de soi.
+      </p>
     </article>
 
     <article class="gallery-section">
@@ -14,7 +17,9 @@
           <p>Image {{ index + 1 }}</p>
         </div>
       </div>
-      <p v-if="images.length === 0" class="no-images">Aucune image trouvée. Ajoutez des images au dossier <code>src/assets/gallery/Rugby/</code></p>
+      <p v-if="images.length === 0" class="no-images">
+        Aucune image trouvée. Ajoutez des images au dossier <code>src/assets/gallery/Rugby/</code>
+      </p>
     </article>
   </section>
 </template>
@@ -85,18 +90,6 @@ const images = computed(() => getGalleryImages('Rugby'))
 }
 </style>
 
-
-.no-images {
-  text-align: center;
-  color: #999;
-  padding: 2rem;
-  font-style: italic;
-}
-
-.no-images code {
-  background-color: #f0f0f0;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: monospace;
-  color: #333;
-}
+.no-images { text-align: center; color: #999; padding: 2rem; font-style: italic; } .no-images code {
+background-color: #f0f0f0; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace;
+color: #333; }

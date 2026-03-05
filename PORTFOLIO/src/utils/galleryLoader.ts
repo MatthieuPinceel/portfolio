@@ -7,13 +7,14 @@
 export function getGalleryImages(category: string): string[] {
   const images = import.meta.glob<{ default: string }>(
     '/src/assets/gallery/**/*.{jpg,jpeg,png,webp,gif}',
-    { eager: true }
-  );
+    { eager: true },
+  )
 
-  const categoryPattern = `/src/assets/gallery/${category}/`;
+  const categoryPattern = `/src/assets/gallery/${category}/`
 
   return Object.keys(images)
     .filter((path) => path.includes(categoryPattern))
-    .map((path) => images[path].default)
-    .sort();
+    .map((path) => images[path]?.default)
+    .filter((image): image is string => image !== undefined)
+    .sort()
 }

@@ -6,11 +6,11 @@ import Footer from './components/Footer.vue'
 <template>
   <header class="site-header">
     <div class="header-content">
-      <img src="/IMG_MAHIEU.png" alt="Matthieu Pinceel" class="header-image">
+      <img src="/IMG_MAHIEU.png" alt="Matthieu Pinceel" class="header-image" />
       <h1 class="site-title">Portfolio Matthieu Pinceel</h1>
       <nav class="site-nav">
         <router-link to="/">À propos</router-link>
-        <router-link to="/professionel">Mon parcours</router-link>
+        <router-link to="/professionel">Mes projets et mon parcours</router-link>
         <router-link to="/video">Mon BUT en 180s</router-link>
         <router-link to="/cv">CV</router-link>
         <router-link to="/contact">Contactez-moi</router-link>

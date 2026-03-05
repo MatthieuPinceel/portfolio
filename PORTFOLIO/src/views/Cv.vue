@@ -6,13 +6,13 @@ import BackButton from '@/components/BackButton.vue'
   <section class="cv">
     <BackButton />
     <h1>Mon CV</h1>
-    <p>Voici un aperçu de mon CV professionnel. Vous pouvez le télécharger ou le visualiser directement ci-dessous.</p>
-    <a class="download-btn" href="/CV_2026-03-03_Matthieu_Pinceel.pdf" target="_blank">Télécharger le PDF</a>
-    <iframe
-      src="/CV_2026-03-03_Matthieu_Pinceel.pdf"
-      class="cv-frame"
-      title="CV"
-    ></iframe>
+    <p>
+      Voici un aperçu de mon CV. Vous pouvez le télécharger ou le visualiser directement ci-dessous.
+    </p>
+    <a class="download-btn" href="/CV_2026-03-03_Matthieu_Pinceel.pdf" target="_blank"
+      >Télécharger le PDF</a
+    >
+    <iframe src="/CV_2026-03-03_Matthieu_Pinceel.pdf" class="cv-frame" title="CV"></iframe>
   </section>
 </template>
 
